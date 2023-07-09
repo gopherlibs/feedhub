@@ -1,16 +1,19 @@
-## FeedHub Go Module [![GoDoc](https://godoc.org/github.com/gorilla/feeds?status.svg)](https://godoc.org/github.com/gorilla/feeds)
-[![CircleCI Build Status](https://circleci.com/gh/gopherlibs/feedhub.svg?style=shield)](https://app.circleci.com/pipelines/github/gopherlibs/feedhub) [![GitHub License](https://img.shields.io/badge/license-BSD2-blue.svg)](https://raw.githubusercontent.com/gopherlibs/feedhub/trunk/LICENSE)
+# FeedHub Go Module [![Go Reference](https://pkg.go.dev/badge/github.com/gopherlibs/feedhub.svg)](https://pkg.go.dev/github.com/gopherlib/feedhub) [![CircleCI Build Status](https://circleci.com/gh/gopherlibs/feedhub.svg?style=shield)](https://app.circleci.com/pipelines/github/gopherlibs/feedhub) [![GitHub License](https://img.shields.io/badge/license-BSD2-blue.svg)](https://raw.githubusercontent.com/gopherlibs/feedhub/trunk/LICENSE)
 
----
 
-**This project is a fork of 'Gorilla's Feeds'. They haven't really worked on theirs since 2019 and archived it in 2022. This project aims to be a successor.**
+*This project is a fork of 'Gorilla's Feeds'. They haven't really worked on theirs since 2019 and archived it in 2022. This project aims to be a successor.*
 
----
+FeedHub is a web feed generator library for generating RSS, Atom, and JSON feeds from Go applications.
 
-FeedHub is a web feed generator library for generating RSS, Atom and JSON feeds from Go
-applications.
 
-### Goals
+## Table of Contents
+
+- [Goals](#goals)
+- [Usage](#usage)
+- [Migration](#migration)
+
+
+## Goals
 
  * Provide a simple interface to create both Atom & RSS 2.0 feeds
  * Full support for [Atom][atom], [RSS 2.0][rss], and [JSON Feed Version 1][jsonfeed] spec elements
@@ -20,7 +23,8 @@ applications.
 [rss]: http://www.rssboard.org/rss-specification
 [jsonfeed]: https://jsonfeed.org/version/1
 
-### Usage
+
+## Usage
 
 ```go
 package main
@@ -189,3 +193,16 @@ Outputs:
 }
 ```
 
+
+## Migration
+
+Coming from [Gorilla Feeds](https://github.com/gorilla/feeds)?
+Switching over to FeedHub is fairly straight forward with a few steps.
+FeedHub v1.0.0 is identical to Gorilla Feeds v1.1.1.
+Only the following changes referring to the module/package need to be done:
+
+1. In Go files where `github.com/gorilla/feeds` is imported, instead import `github.com/gopherlibs/feedhub/feedhub`.
+1. In your Go code replace references to the package name `feeds` with `feedhub`.
+  - *optional* If you have a lot of references and don't want to do this step now, in the import statement you can alias the package name. You can use the import statement `feeds github.com/gopherlibs/feedhub/feedhub` and then not have to update the references.
+1. Run `go get github.com/gopherlibs/feedhub` to download the module locally.
+1. Run `go mod tidy` to update your `go.mod` file with the new module.
