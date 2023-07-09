@@ -1,4 +1,4 @@
-package feeds
+package feedhub
 
 // rss support
 // validation done according to spec here:

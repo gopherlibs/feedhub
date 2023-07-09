@@ -70,4 +70,4 @@ From here, you can modify or add each syndication's specific fields before outpu
 	jsonFeed.NextUrl = "https://www.example.com/feed.json?page=2"
 	json, err := jsonFeed.ToJSON()
 */
-package feeds
+package feedhub

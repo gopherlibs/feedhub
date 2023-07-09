@@ -1,4 +1,4 @@
-package feeds
+package feedhub
 
 import (
 	"encoding/json"
