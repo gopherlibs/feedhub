@@ -1,60 +1,30 @@
-version: 2.0
-
-jobs:
-  # Base test configuration for Go library tests Each distinct version should
-  # inherit this base, and override (at least) the container image used.
-  "test": &test
-    docker:
-      - image: circleci/golang:latest
-    working_directory: /go/src/github.com/gorilla/feeds
-    steps: &steps
-      - checkout
-      - run: go version
-      - run: go get -t -v ./...
-      - run: diff -u <(echo -n) <(gofmt -d .)
-      - run: if [[ "$LATEST" = true ]]; then go vet -v .; fi
-      - run: go test -v -race ./...
-
-  "latest":
-    <<: *test
-    environment:
-      LATEST: true
-
-
-  "1.12":
-    <<: *test
-    docker:
-      - image: circleci/golang:1.12
-
-  "1.11":
-    <<: *test
-    docker:
-      - image: circleci/golang:1.11
-
-  "1.10":
-    <<: *test
-    docker:
-      - image: circleci/golang:1.10
-
-  "1.9":
-    <<: *test
-    docker:
-      - image: circleci/golang:1.9
-
-  "1.8":
-    <<: *test
-    docker:
-      - image: circleci/golang:1.8
-
-
+version: 2.1
 
 workflows:
-  version: 2
-  build:
+  main:
     jobs:
-      - "latest"
-      - "1.12"
-      - "1.11"
-      - "1.10"
-      - "1.9"
-      - "1.8"
+      - build
+
+jobs:
+  build:
+    docker:
+      - image: cimg/go:1.20
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-v1-{{ checksum "go.sum"  }}
+      - run:
+          name: "Test with GoTestSum"
+          command: |
+            mkdir ./test-output
+            gotestsum --junitfile ./test-output/unit-tests.xml
+      - save_cache:
+          key: go-mod-v1-{{ checksum "go.sum"  }}
+          paths:
+            - /home/circleci/go/pkg/mod
+      - store_test_results:
+          path: ./test-output
+      - run:
+          name: "Try compiling"
+          command: go build ./...
