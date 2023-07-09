@@ -7,7 +7,7 @@
 
 ---
 
-feeds is a web feed generator library for generating RSS, Atom and JSON feeds from Go
+FeedHub is a web feed generator library for generating RSS, Atom and JSON feeds from Go
 applications.
 
 ### Goals
@@ -29,36 +29,37 @@ import (
     "fmt"
     "log"
     "time"
-    "github.com/gorilla/feeds"
+
+    "github.com/gopherlibs/feedhub/feedhub"
 )
 
 func main() {
     now := time.Now()
-    feed := &feeds.Feed{
+    feed := &feedhub.Feed{
         Title:       "jmoiron.net blog",
-        Link:        &feeds.Link{Href: "http://jmoiron.net/blog"},
+        Link:        &feedhub.Link{Href: "http://jmoiron.net/blog"},
         Description: "discussion about tech, footie, photos",
         Author:      &feeds.Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
         Created:     now,
     }
 
-    feed.Items = []*feeds.Item{
-        &feeds.Item{
+    feed.Items = []*feedhub.Item{
+        &feedhub.Item{
             Title:       "Limiting Concurrency in Go",
-            Link:        &feeds.Link{Href: "http://jmoiron.net/blog/limiting-concurrency-in-go/"},
+            Link:        &feedhub.Link{Href: "http://jmoiron.net/blog/limiting-concurrency-in-go/"},
             Description: "A discussion on controlled parallelism in golang",
             Author:      &feeds.Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
             Created:     now,
         },
-        &feeds.Item{
+        &feedhub.Item{
             Title:       "Logic-less Template Redux",
-            Link:        &feeds.Link{Href: "http://jmoiron.net/blog/logicless-template-redux/"},
+            Link:        &feedhub.Link{Href: "http://jmoiron.net/blog/logicless-template-redux/"},
             Description: "More thoughts on logicless templates",
             Created:     now,
         },
-        &feeds.Item{
+        &feedhub.Item{
             Title:       "Idiomatic Code Reuse in Go",
-            Link:        &feeds.Link{Href: "http://jmoiron.net/blog/idiomatic-code-reuse-in-go/"},
+            Link:        &feedhub.Link{Href: "http://jmoiron.net/blog/idiomatic-code-reuse-in-go/"},
             Description: "How to use interfaces <em>effectively</em>",
             Created:     now,
         },
