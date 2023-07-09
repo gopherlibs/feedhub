@@ -1,10 +1,9 @@
-## gorilla/feeds
-[![GoDoc](https://godoc.org/github.com/gorilla/feeds?status.svg)](https://godoc.org/github.com/gorilla/feeds)
-[![CircleCI](https://circleci.com/gh/gorilla/feeds.svg?style=svg)](https://circleci.com/gh/gorilla/feeds)
+## FeedHub Go Module [![GoDoc](https://godoc.org/github.com/gorilla/feeds?status.svg)](https://godoc.org/github.com/gorilla/feeds)
+[![CircleCI Build Status](https://circleci.com/gh/gopherlibs/feedhub.svg?style=shield)](https://app.circleci.com/pipelines/github/gopherlibs/feedhub) [![GitHub License](https://img.shields.io/badge/license-BSD2-blue.svg)](https://raw.githubusercontent.com/gopherlibs/feedhub/trunk/LICENSE)
 
 ---
 
-**The Gorilla project has been archived, and is no longer under active maintainenance. You can read more here: https://github.com/gorilla#gorilla-toolkit**
+**This project is a fork of 'Gorilla's Feeds'. They haven't really worked on theirs since 2019 and archived it in 2022. This project aims to be a successor.**
 
 ---
 
