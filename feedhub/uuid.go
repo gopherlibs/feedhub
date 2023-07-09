@@ -1,4 +1,4 @@
-package feeds
+package feedhub
 
 // relevant bits from https://github.com/abneptis/GoUUID/blob/master/uuid.go
 
