@@ -65,5 +65,13 @@ func main() {
 		feed.WriteRss(w)
 	})
 
+	http.HandleFunc("/feed.atom", func(w http.ResponseWriter, r *http.Request) {
+		feed.WriteAtom(w)
+	})
+
+	http.HandleFunc("/feed.json", func(w http.ResponseWriter, r *http.Request) {
+		feed.WriteJSON(w)
+	})
+
 	err = http.ListenAndServe(":3333", nil)
 }
