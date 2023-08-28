@@ -43,7 +43,7 @@ func main() {
         Title:       "jmoiron.net blog",
         Link:        &feedhub.Link{Href: "http://jmoiron.net/blog"},
         Description: "discussion about tech, footie, photos",
-        Author:      &feeds.Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
+        Author:      &feedhub.Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
         Created:     now,
     }
 
@@ -52,7 +52,7 @@ func main() {
             Title:       "Limiting Concurrency in Go",
             Link:        &feedhub.Link{Href: "http://jmoiron.net/blog/limiting-concurrency-in-go/"},
             Description: "A discussion on controlled parallelism in golang",
-            Author:      &feeds.Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
+            Author:      &feedhub.Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
             Created:     now,
         },
         &feedhub.Item{
