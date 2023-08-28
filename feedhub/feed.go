@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"io"
+	"net/http"
 	"sort"
 	"time"
 )
@@ -88,6 +89,16 @@ func ToXML(feed XmlFeed) (string, error) {
 // WriteXML writes a feed object (either a Feed, AtomFeed, or RssFeed) as XML into
 // the writer. Returns an error if XML marshaling fails.
 func WriteXML(feed XmlFeed, w io.Writer) error {
+
+	// set Content-Type header based on feed type when using a ResponseWriter
+	rw, ok := w.(http.ResponseWriter)
+	if ok {
+		switch feed.(type) {
+		case *Rss:
+			rw.Header().Add("Content-Type", "application/rss+xml")
+		}
+	}
+
 	x := feed.FeedXml()
 	// write default xml header, without the newline
 	if _, err := w.Write([]byte(xml.Header[:len(xml.Header)-1])); err != nil {
