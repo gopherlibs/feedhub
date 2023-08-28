@@ -94,6 +94,8 @@ func WriteXML(feed XmlFeed, w io.Writer) error {
 	rw, ok := w.(http.ResponseWriter)
 	if ok {
 		switch feed.(type) {
+		case *Atom:
+			rw.Header().Add("Content-Type", "application/atom+xml")
 		case *Rss:
 			rw.Header().Add("Content-Type", "application/rss+xml")
 		}
@@ -139,6 +141,13 @@ func (f *Feed) ToJSON() (string, error) {
 
 // WriteJSON writes an JSON representation of this feed to the writer.
 func (f *Feed) WriteJSON(w io.Writer) error {
+
+	// set Content-Type header for JSON Feed when using a ResponseWriter
+	rw, ok := w.(http.ResponseWriter)
+	if ok {
+		rw.Header().Add("Content-Type", "application/feed+json")
+	}
+
 	j := &JSON{f}
 	feed := j.JSONFeed()
 
