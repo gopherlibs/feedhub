@@ -1,0 +1,34 @@
+name: "Main WF"
+
+on: push
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-24.04
+    env:
+      TEST_RESULTS: /tmp/test-results
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        go-version-file: 'go.mod'
+    - name: "Install Deps"
+      run: |
+        go version
+        go install gotest.tools/gotestsum@latest
+        gotestsum --version
+    - name: "Run Tests"
+      run: |
+        mkdir ./test-output
+        gotestsum --junitfile ./test-output/unit-tests.xml
+  snapshot:
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        go-version-file: 'go.mod'
+    - uses: goreleaser/goreleaser-action@v6
+      with:
+        version: '2.7.0'
+        args: "release --snapshot"
