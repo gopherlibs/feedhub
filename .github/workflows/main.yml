@@ -1,6 +1,9 @@
 name: "Main WF"
 
-on: push
+on:
+  push:
+    branches-ignore:
+      - 'trunk'
 
 jobs:
   unit-tests:
