@@ -178,6 +178,9 @@ func newJSONItem(i *Item) *JSONItem {
 	if i.Enclosure != nil && strings.HasPrefix(i.Enclosure.Type, "image/") {
 		item.Image = i.Enclosure.Url
 	}
+	if i.Category != "" {
+		item.Tags = []string{i.Category}
+	}
 
 	return item
 }

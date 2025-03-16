@@ -37,6 +37,7 @@ type Item struct {
 	Created     time.Time
 	Enclosure   *Enclosure
 	Content     string
+	Category    string // used as first element of tags in json
 }
 
 type Feed struct {
